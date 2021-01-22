@@ -7,6 +7,11 @@
 
 
 #include<iostream>
+#include<string>
+#include "Account.h"
+#include "User.h"
+#include "Admin.h"
+#include "FileHandler.h"
 
 using namespace std;
 
