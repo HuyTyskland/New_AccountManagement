@@ -8,19 +8,21 @@
 #include<iostream>
 #include<string>
 #include "Account.h"
+#include "User.h"
+#include "Admin.h"
 
 using namespace std;
 
 Account::Account() {
 	// TODO Auto-generated constructor stub
-
+	isUser = true;
 }
 
 void Account::setInfo(string Identification, string Password, bool aStatus)
 {
 	ID = Identification;
 	PW = Password;
-	status = aStatus;
+	theStatus = aStatus;
 }
 
 string Account::getID()
@@ -35,7 +37,7 @@ string Account::getPW()
 
 bool Account::getStatus()
 {
-	return status;
+	return theStatus;
 }
 
 void Account::changePassword(string newPW)

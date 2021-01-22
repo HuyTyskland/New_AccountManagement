@@ -18,12 +18,12 @@ public:
 	string getPW();
 	bool getStatus();
 	void changePassword(string);
-
+	virtual string printElement();
 protected:
 	string ID;
 	string PW;
-	bool role;
-	bool status;
+	bool isUser;
+	bool theStatus;
 
 };
 
