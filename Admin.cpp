@@ -35,5 +35,10 @@ void Admin::DeleteAnAccount()
 
 void Admin::ApproveDeletionRequest()
 {
-	cout << "Approve a deletion request"
+	cout << "Approve a deletion request" << endl;
+}
+
+string Admin::printElement()
+{
+	return "Admin: " + "ID: " + ID + "PW: " + PW;
 }

@@ -9,6 +9,7 @@
 #include<string>
 #include "Account.h"
 #include "User.h"
+#include "Admin.h"
 
 using namespace std;
 
@@ -20,4 +21,9 @@ User::User() {
 void User::sendDeletionRequest()
 {
 	cout << "send deletion request" << endl;
+}
+
+string User::printElement()
+{
+	return "User: " + "ID: " + ID + ", PW: " + PW;
 }

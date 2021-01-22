@@ -12,6 +12,7 @@ class User : public Account {
 public:
 	User();
 	void sendDeletionRequest();
+	string printElement();
 };
 
 #endif /* USER_H_ */
