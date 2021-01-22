@@ -13,9 +13,10 @@ using namespace std;
 class Account {
 public:
 	Account();
-	void setInfo(string, string, bool, bool);
+	void setInfo(string, string, bool);
 	string getID();
 	string getPW();
+	bool getStatus();
 	void changePassword(string);
 
 protected:
