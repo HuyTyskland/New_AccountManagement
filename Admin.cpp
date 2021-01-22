@@ -38,13 +38,4 @@ void Admin::ApproveDeletionRequest()
 	cout << "Approve a deletion request" << endl;
 }
 
-string Admin::printElement()
-{
-	string s = "";
-	s.append("Admin: ");
-	s.append("ID: ");
-	s.append(ID);
-	s.append(" PW: ");
-	s.append(PW);
-	return s;
-}
+

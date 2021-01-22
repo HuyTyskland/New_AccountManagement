@@ -18,6 +18,7 @@ Account::Account() {
 	isUser = true;
 }
 
+
 void Account::setInfo(string Identification, string Password, bool aStatus)
 {
 	ID = Identification;
@@ -43,4 +44,14 @@ bool Account::getStatus()
 void Account::changePassword(string newPW)
 {
 	cout << "change the password to " << newPW << endl;
+}
+
+string Account::printElement()
+{
+	string s = "";
+	s.append("ID: ");
+	s.append(ID);
+	s.append(" PW: ");
+	s.append(PW);
+	return s;
 }

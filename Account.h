@@ -18,7 +18,7 @@ public:
 	string getPW();
 	bool getStatus();
 	void changePassword(string);
-	virtual string printElement();
+	string printElement();
 protected:
 	string ID;
 	string PW;

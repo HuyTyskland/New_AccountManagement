@@ -23,13 +23,4 @@ void User::sendDeletionRequest()
 	cout << "send deletion request" << endl;
 }
 
-string User::printElement()
-{
-	string s = "";
-	s.append("User: ");
-	s.append("ID: ");
-	s.append(ID);
-	s.append(" PW: ");
-	s.append(PW);
-	return s;
-}
+

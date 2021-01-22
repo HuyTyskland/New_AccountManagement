@@ -15,7 +15,6 @@ public:
 	void showAllDeletionRequest();
 	void ApproveDeletionRequest();
 	void DeleteAnAccount();
-	string printElement();
 };
 
 #endif /* ADMIN_H_ */
