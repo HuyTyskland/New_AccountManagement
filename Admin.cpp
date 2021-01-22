@@ -40,5 +40,11 @@ void Admin::ApproveDeletionRequest()
 
 string Admin::printElement()
 {
-	return "Admin: " + "ID: " + ID + "PW: " + PW;
+	string s = "";
+	s.append("Admin: ");
+	s.append("ID: ");
+	s.append(ID);
+	s.append(" PW: ");
+	s.append(PW);
+	return s;
 }

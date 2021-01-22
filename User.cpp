@@ -25,5 +25,11 @@ void User::sendDeletionRequest()
 
 string User::printElement()
 {
-	return "User: " + "ID: " + ID + ", PW: " + PW;
+	string s = "";
+	s.append("User: ");
+	s.append("ID: ");
+	s.append(ID);
+	s.append(" PW: ");
+	s.append(PW);
+	return s;
 }
