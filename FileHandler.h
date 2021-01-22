@@ -8,10 +8,16 @@
 #ifndef FILEHANDLER_H_
 #define FILEHANDLER_H_
 
+#include<vector>
+
 class FileHandler {
 
 public:
 	FileHandler();
+	void writeFile(vector<User>, vector<Admin>);
+private:
+	vector<Admin> adminList;
+	vector<User> userList;
 };
 
 #endif /* FILEHANDLER_H_ */
