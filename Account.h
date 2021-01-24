@@ -17,6 +17,7 @@ public:
 	string getID();
 	string getPW();
 	bool getStatus();
+	bool getRole();
 	void changePassword(string);
 	string printElement();
 protected:

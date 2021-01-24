@@ -12,6 +12,7 @@
 #include "User.h"
 #include "Admin.h"
 #include "FileHandler.h"
+#include "AccountManager.h"
 
 using namespace std;
 
