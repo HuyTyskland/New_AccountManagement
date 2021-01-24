@@ -42,5 +42,18 @@ FileHandler::FileHandler() {
 					returnInfoPieces(line)[0].getStatus());
 		}
 	}
+	myfile.close();
+	remove("data.txt");
+	rename("temp.txt","data.txt");
 }
 
+FileHandler::~FileHandler()
+{
+	fstream myfile;
+	myfile.open("data.txt");
+	for (auto it = userList.begin(); it != userList.end(); ++it)
+		myfile << (*it).printElement();
+	for (auto it = adminList.begin(); it != adminList.end(); ++it)
+		myfile << (*it).printElement();
+	myfile.close();
+}

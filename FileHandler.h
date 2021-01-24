@@ -14,7 +14,7 @@ class FileHandler {
 
 public:
 	FileHandler();
-	void writeFile(vector<User>, vector<Admin>);
+	~FileHandler();
 private:
 	vector<Admin> adminList;
 	vector<User> userList;
