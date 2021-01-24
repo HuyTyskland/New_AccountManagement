@@ -21,5 +21,9 @@ FileHandler::FileHandler() {
 	string line;
 	fstream myfile;
 	myfile.open("data.txt");
+	while(getline(myfile, line))
+	{
+
+	}
 }
 

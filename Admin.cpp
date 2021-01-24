@@ -15,7 +15,6 @@ using namespace std;
 
 Admin::Admin() {
 	// TODO Auto-generated constructor stub
-	isUser = false;
 }
 
 void Admin::showAllAccount()

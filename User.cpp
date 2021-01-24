@@ -15,7 +15,6 @@ using namespace std;
 
 User::User() {
 	// TODO Auto-generated constructor stub
-	isUser = true;
 }
 
 void User::sendDeletionRequest()

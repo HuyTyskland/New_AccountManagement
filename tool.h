@@ -12,7 +12,8 @@
 
 using namespace std;
 
-vector<Account> returnInfoPiece(string);
+vector<Account> returnInfoPieces(string);
+bool isPasswordValid(string);
 
 
 #endif /* TOOL_H_ */

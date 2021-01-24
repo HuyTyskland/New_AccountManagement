@@ -13,7 +13,7 @@ using namespace std;
 class Account {
 public:
 	Account();
-	void setInfo(string, string, bool);
+	void setInfo(string, string, bool, bool);
 	string getID();
 	string getPW();
 	bool getStatus();

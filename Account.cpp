@@ -19,11 +19,12 @@ Account::Account() {
 }
 
 
-void Account::setInfo(string Identification, string Password, bool aStatus)
+void Account::setInfo(string Identification, string Password, bool role, bool aStatus)
 {
 	ID = Identification;
 	PW = Password;
 	theStatus = aStatus;
+	isUser = role;
 }
 
 string Account::getID()
