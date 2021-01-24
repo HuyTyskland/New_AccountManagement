@@ -12,7 +12,7 @@
 
 using namespace std;
 
-vector<Account> returnInfo(string);
+vector<Account> returnInfoPiece(string);
 
 
 #endif /* TOOL_H_ */
