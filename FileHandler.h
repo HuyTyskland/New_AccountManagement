@@ -15,6 +15,8 @@ class FileHandler {
 public:
 	FileHandler();
 	~FileHandler();
+	vector<Admin> returnAdminList();
+	vector<User> returnUserList();
 private:
 	vector<Admin> adminList;
 	vector<User> userList;

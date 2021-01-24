@@ -57,3 +57,13 @@ FileHandler::~FileHandler()
 		myfile << (*it).printElement();
 	myfile.close();
 }
+
+vector<Admin> FileHandler::returnAdminList()
+{
+	return adminList;
+}
+
+vector<User> FileHandler::returnUserList()
+{
+	return userList;
+}
