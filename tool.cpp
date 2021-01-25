@@ -58,8 +58,15 @@ bool isIdUnique(vector<User> userList, string ID)
 	return true;
 }
 
-void printList(vector<User> userList)
+void printUserList(vector<User> userList)
 {
 	for (auto it = userList.begin(); it != userList.end(); ++it)
 		cout << (*it).printElement() << endl;
+}
+
+void printDeletionRequest(vector<User> userList)
+{
+	for (auto it = userList.begin(); it != userList.end(); ++it)
+		if ((*it).getStatus() == false)
+			cout << (*it).printElement() << endl;
 }

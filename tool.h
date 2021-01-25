@@ -15,7 +15,8 @@ using namespace std;
 vector<Account> returnInfoPieces(string);
 bool isPasswordValid(string);
 bool isIdUnique(vector<User>, string);
-void printList(vector<User>);
+void printUserList(vector<User>);
+void printDeletionRequest(vector<User>);
 
 
 #endif /* TOOL_H_ */
