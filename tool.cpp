@@ -49,3 +49,10 @@ bool isPasswordValid(string PW)
 	else return false;
 }
 
+bool isIdUnique(vector<User> userList, string ID)
+{
+	for (auto it = userList.begin(); it != userList.end(); ++it)
+		if (ID == (*it).getID())
+			return false;
+	return true;
+}
