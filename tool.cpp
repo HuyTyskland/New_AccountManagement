@@ -84,3 +84,10 @@ void changePassword(string ID, string newPW, vector<Admin> adminList)
 		if ((*it).getID() == ID)
 			(*it).setInfo(ID, newPW, false, true);
 }
+
+void setPending(string ID, vector<User> userList)
+{
+	for (auto it = userList.begin(); it != userList.end(); ++it)
+		if ((*it).getID() ==  ID)
+			(*it).setInfo(ID, (*it).getPW(), true, false);
+}
