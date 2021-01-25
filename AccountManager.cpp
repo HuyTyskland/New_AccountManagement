@@ -12,6 +12,7 @@
 #include "Admin.h"
 #include "FileHandler.h"
 #include "AccountManager.h"
+#include "tool.h"
 
 using namespace std;
 
@@ -44,7 +45,7 @@ bool AccountManager::isAccountFound(string ID, string PW)
 	return false;
 }
 
-vector<string> getAccountInfo()
+vector<string> AccountManager::getAccountInfo()
 {
 	string ID, PW;
 	vector<string> accountInfo;
@@ -57,4 +58,12 @@ vector<string> getAccountInfo()
 	accountInfo.push_back(PW);
 	return accountInfo;
 
+}
+
+void AccountManager::registerNewAccount(string newID, string newPW)
+{
+	if (isIdUnique(returnUser(), newID) && isPasswordValid(newPW))
+	{
+		fileHandler->insertNewAccount(newID, newPW);
+	}
 }

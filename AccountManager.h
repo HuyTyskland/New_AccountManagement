@@ -16,6 +16,7 @@ public:
 	vector<User> returnUser();
 	bool isAccountFound(string,string);
 	vector<string> getAccountInfo();
+	void registerNewAccount(string ID, string PW);
 private:
 	FileHandler *fileHandler = new FileHandler(whichRegion);
 	string whichRegion;
