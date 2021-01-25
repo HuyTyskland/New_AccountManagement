@@ -68,3 +68,9 @@ vector<User> FileHandler::returnUserList()
 {
 	return userList;
 }
+
+void FileHandler::insertNewAccount(string newID, string newPW)
+{
+	userList.push_back(User());
+	userList[userList.size()].setInfo(newID, newPW, true, 1);
+}

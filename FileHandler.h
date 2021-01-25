@@ -17,6 +17,7 @@ public:
 	~FileHandler();
 	vector<Admin> returnAdminList();
 	vector<User> returnUserList();
+	void insertNewAccount(string, string);
 private:
 	vector<Admin> adminList;
 	vector<User> userList;
