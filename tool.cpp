@@ -8,6 +8,7 @@
 #include<iostream>
 #include<string>
 #include<regex>
+#include<vector>
 #include "Account.h"
 #include "User.h"
 #include "Admin.h"
@@ -55,4 +56,10 @@ bool isIdUnique(vector<User> userList, string ID)
 		if (ID == (*it).getID())
 			return false;
 	return true;
+}
+
+void printList(vector<User> userList)
+{
+	for (auto it = userList.begin(); it != userList.end(); ++it)
+		cout << (*it).printElement() << endl;
 }
