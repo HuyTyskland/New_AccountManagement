@@ -34,3 +34,12 @@ vector<User> AccountManager::returnUser()
 {
 	return fileHandler->returnUserList();
 }
+
+bool AccountManager::isAccountFound(string ID, string PW)
+{
+	for(auto it = returnAdmin().begin(); it != returnAdmin().end(); ++it)
+		if ((ID == (*it).getID()) && PW == (*it).getPW())
+			return true;
+		else return false;
+	return false;
+}
