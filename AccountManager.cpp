@@ -36,9 +36,18 @@ vector<User> AccountManager::returnUser()
 	return fileHandler->returnUserList();
 }
 
-bool AccountManager::isAccountFound(string ID, string PW)
+bool AccountManager::isAdminFound(string ID, string PW)
 {
 	for(auto it = returnAdmin().begin(); it != returnAdmin().end(); ++it)
+		if ((ID == (*it).getID()) && PW == (*it).getPW())
+			return true;
+		else return false;
+	return false;
+}
+
+bool AccountManager::isUserFound(string ID, string PW)
+{
+	for(auto it = returnUser().begin(); it != returnUser().end(); ++it)
 		if ((ID == (*it).getID()) && PW == (*it).getPW())
 			return true;
 		else return false;
@@ -65,5 +74,6 @@ void AccountManager::registerNewAccount(string newID, string newPW)
 	if (isIdUnique(returnUser(), newID) && isPasswordValid(newPW))
 	{
 		fileHandler->insertNewAccount(newID, newPW);
-	}
+		cout << "The account is created successfully" << endl;
+	} else cout << "Your ID is not unique or your password is not valid" << endl;
 }

@@ -14,7 +14,8 @@ public:
 	virtual ~AccountManager();
 	vector<Admin> returnAdmin();
 	vector<User> returnUser();
-	bool isAccountFound(string,string);
+	bool isAdminFound(string,string);
+	bool isUserFound(string,string);
 	vector<string> getAccountInfo();
 	void registerNewAccount(string ID, string PW);
 private:
