@@ -10,12 +10,13 @@
 
 class AccountManager {
 public:
-	AccountManager();
+	AccountManager(string);
 	virtual ~AccountManager();
 	vector<Admin> returnAdmin();
 	vector<User> returnUser();
 private:
-	FileHandler fileHandler;
+	FileHandler *fileHandler = new FileHandler(whichRegion);
+	string whichRegion;
 };
 
 #endif /* ACCOUNTMANAGER_H_ */

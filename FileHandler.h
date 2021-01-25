@@ -13,13 +13,14 @@
 class FileHandler {
 
 public:
-	FileHandler();
+	FileHandler(string);
 	~FileHandler();
 	vector<Admin> returnAdminList();
 	vector<User> returnUserList();
 private:
 	vector<Admin> adminList;
 	vector<User> userList;
+	string regionData;
 };
 
 #endif /* FILEHANDLER_H_ */

@@ -17,11 +17,12 @@
 
 using namespace std;
 
-FileHandler::FileHandler() {
+FileHandler::FileHandler(string whichRegion) {
 	// TODO Auto-generated constructor stub
+	regionData = whichRegion;
 	string line;
 	fstream myfile;
-	myfile.open("data.txt");
+	myfile.open(regionData + ".txt");
 	int sizeUser = 0;
 	int sizeAdmin = 0;
 	while(getline(myfile, line))
@@ -50,7 +51,7 @@ FileHandler::FileHandler() {
 FileHandler::~FileHandler()
 {
 	fstream myfile;
-	myfile.open("data.txt");
+	myfile.open(regionData + ".txt");
 	for (auto it = userList.begin(); it != userList.end(); ++it)
 		myfile << (*it).printElement();
 	for (auto it = adminList.begin(); it != adminList.end(); ++it)

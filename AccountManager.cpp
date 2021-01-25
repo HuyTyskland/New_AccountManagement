@@ -15,21 +15,22 @@
 
 using namespace std;
 
-AccountManager::AccountManager() {
+AccountManager::AccountManager(string region) {
+	whichRegion = region;
 	// TODO Auto-generated constructor stub
 }
 
 AccountManager::~AccountManager() {
 	// TODO Auto-generated destructor stub
-	fileHandler.~FileHandler();
+	delete(fileHandler);
 }
 
 vector<Admin> AccountManager::returnAdmin()
 {
-	return fileHandler.returnAdminList();
+	return fileHandler->returnAdminList();
 }
 
 vector<User> AccountManager::returnUser()
 {
-	return fileHandler.returnUserList();
+	return fileHandler->returnUserList();
 }
