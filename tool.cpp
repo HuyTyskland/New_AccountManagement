@@ -70,3 +70,17 @@ void printDeletionRequest(vector<User> userList)
 		if ((*it).getStatus() == false)
 			cout << (*it).printElement() << endl;
 }
+
+void deleteAnAccount(string ID, vector<User> userList)
+{
+	for(auto it = userList.begin(); it != userList.end(); ++it)
+		if(ID == (*it).getID())
+			userList.erase(it);
+}
+
+void changePassword(string ID, string newPW, vector<Admin> adminList)
+{
+	for (auto it = adminList.begin(); it != adminList.end(); ++it)
+		if ((*it).getID() == ID)
+			(*it).setInfo(ID, newPW, false, true);
+}
