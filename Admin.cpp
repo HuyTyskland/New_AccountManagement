@@ -7,9 +7,11 @@
 
 #include<iostream>
 #include<string>
+#include<vector>
 #include "Account.h"
 #include "User.h"
 #include "Admin.h"
+#include "tool.h"
 
 using namespace std;
 
@@ -17,24 +19,24 @@ Admin::Admin() {
 	// TODO Auto-generated constructor stub
 }
 
-void Admin::showAllAccount()
+void Admin::showAllAccount(vector<User> userList)
 {
-	cout << "Show All Accounts" << endl;
+	printUserList(userList);
 }
 
-void Admin::showAllDeletionRequest()
+void Admin::showAllDeletionRequest(vector<User> userList)
 {
-	cout << "Show All deletion request" << endl;
+	printDeletionRequest(userList);
 }
 
-void Admin::DeleteAnAccount()
+void Admin::approveAnRequest(string deletedID, vector<User> userList)
 {
-	cout << "delete an account" << endl;
+	deleteAnAccount(deletedID, userList);
 }
 
-void Admin::ApproveDeletionRequest()
+void Admin::changeThePassword(string ID, string newPW, vector<Admin> adminList)
 {
-	cout << "Approve a deletion request" << endl;
+	changePassword(ID, newPW, adminList);
 }
 
 

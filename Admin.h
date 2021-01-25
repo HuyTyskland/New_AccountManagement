@@ -8,13 +8,15 @@
 #ifndef ADMIN_H_
 #define ADMIN_H_
 
+#include<vector>
+
 class Admin : public Account{
 public:
 	Admin();
-	void showAllAccount();
-	void showAllDeletionRequest();
-	void ApproveDeletionRequest();
-	void DeleteAnAccount();
+	void showAllAccount(vector<User>);
+	void showAllDeletionRequest(vector<User>);
+	void approveAnRequest(string, vector<User>);
+	void changeThePassword(string, string, vector<Admin>);
 };
 
 #endif /* ADMIN_H_ */

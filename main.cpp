@@ -19,6 +19,8 @@ using namespace std;
 string regionList();
 void regionAction(string);
 void logMenu();
+int adminOption();
+void adminAction(int, vector<User>&, vector<Admin>&);
 
 int main()
 {
@@ -53,12 +55,24 @@ void regionAction(string region)
 	{
 	case 1:
 	{
+		cout << "Insert your account:" << endl;
+		vector<string> anAccount = ptrAccMana->getAccountInfo();
+		if (ptrAccMana->isAdminFound(anAccount[0], anAccount[1]))
+		{
+			cout << "Admin menu" << endl;
+		} else if(ptrAccMana->isUserFound(anAccount[0], anAccount[1]))
+		{
+			cout << "User menu" << endl;
+		}
 		break;
 	}
 	case 2:
 	{
+		cout << "Insert your new account info:" << endl;
 		vector<string> newAccount = ptrAccMana->getAccountInfo();
 		ptrAccMana->registerNewAccount(newAccount[0], newAccount[1]);
+		cout << "Thank you for registering" << endl;
+		break;
 	}
 	}
 
@@ -72,4 +86,56 @@ void logMenu()
 	cout << "Your choice: ";
 }
 
+int adminOption()
+{
+	int choice = 0;
+	cout << "Hello Admin, what do you want to do?" << endl;
+	cout << "1. Display All Account" << endl;
+	cout << "2. Display All Deletion Request" << endl;
+	cout << "3. Approve Deletion Request" << endl;
+	cout << "4. Disapprove Deletion Request" << endl;
+	cout << "5. Change Password" << endl;
+	cout << "6. Delete An Account" << endl;
+	cout << "7. Exit" << endl;
+	cin >> choice;
+	return choice;
+}
 
+void adminAction(int choice, vector<User> &userList, vector<Admin> &adminList)
+{
+	Admin *anAdmin = new Admin;
+	switch(choice)
+	{
+	case 1:
+	{
+		anAdmin->showAllAccount(userList);
+		break;
+	}
+	case 2:
+	{
+		anAdmin->showAllDeletionRequest(userList);
+		break;
+	}
+	case 3:
+	{
+		string deletedID;
+		cout << "Which deletion do you want to approve, please enter that ID: ";
+		cin >> deletedID;
+		anAdmin->approveAnRequest(deletedID, userList);
+		break;
+	}
+	case 4:
+	{
+		cout << "Disapprove the request" << endl;
+		break;
+	}
+	case 5:
+	{
+		string newPW;
+		cout << "what is your new password: ";
+		cin >> newPW;
+		anAdmin->changeThePassword(anAdmin->getID(), newPW, adminList);
+		break;
+	}
+	}
+}
