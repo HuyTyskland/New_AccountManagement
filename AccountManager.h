@@ -14,6 +14,8 @@ public:
 	virtual ~AccountManager();
 	vector<Admin> returnAdmin();
 	vector<User> returnUser();
+	bool isAccountFound(string,string);
+	vector<string> getAccountInfo();
 private:
 	FileHandler *fileHandler = new FileHandler(whichRegion);
 	string whichRegion;

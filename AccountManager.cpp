@@ -43,3 +43,18 @@ bool AccountManager::isAccountFound(string ID, string PW)
 		else return false;
 	return false;
 }
+
+vector<string> getAccountInfo()
+{
+	string ID, PW;
+	vector<string> accountInfo;
+	cout << "ID: ";
+	cin >> ID;
+	accountInfo.push_back(ID);
+	cout << endl;
+	cout << "PW: ";
+	cin >> PW;
+	accountInfo.push_back(PW);
+	return accountInfo;
+
+}
