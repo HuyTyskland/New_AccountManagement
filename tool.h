@@ -19,6 +19,7 @@ void printUserList(vector<User>);
 void printDeletionRequest(vector<User>);
 void deleteAnAccount(string, vector<User>);
 void changePassword(string, string, vector<Admin>);
+void changePassword(string, string, vector<User>);
 void setPending(string, vector<User>);
 
 

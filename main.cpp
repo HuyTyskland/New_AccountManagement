@@ -20,7 +20,9 @@ string regionList();
 void regionAction(string);
 void logMenu();
 int adminOption();
-void adminAction(int, vector<User>&, vector<Admin>&);
+void adminAction(int, string, vector<User>&, vector<Admin>&);
+int userOption();
+void userAction(int, string, vector<User>&);
 
 int main()
 {
@@ -59,7 +61,10 @@ void regionAction(string region)
 		vector<string> anAccount = ptrAccMana->getAccountInfo();
 		if (ptrAccMana->isAdminFound(anAccount[0], anAccount[1]))
 		{
-			cout << "Admin menu" << endl;
+			adminAction(adminOption(),
+					anAccount[0],
+					ptrAccMana->returnUser(),
+					ptrAccMana->returnAdmin());
 		} else if(ptrAccMana->isUserFound(anAccount[0], anAccount[1]))
 		{
 			cout << "User menu" << endl;
@@ -95,13 +100,12 @@ int adminOption()
 	cout << "3. Approve Deletion Request" << endl;
 	cout << "4. Disapprove Deletion Request" << endl;
 	cout << "5. Change Password" << endl;
-	cout << "6. Delete An Account" << endl;
-	cout << "7. Exit" << endl;
+	cout << "6. Exit" << endl;
 	cin >> choice;
 	return choice;
 }
 
-void adminAction(int choice, vector<User> &userList, vector<Admin> &adminList)
+void adminAction(int choice, string ID, vector<User> &userList, vector<Admin> &adminList)
 {
 	Admin *anAdmin = new Admin;
 	switch(choice)
@@ -134,7 +138,41 @@ void adminAction(int choice, vector<User> &userList, vector<Admin> &adminList)
 		string newPW;
 		cout << "what is your new password: ";
 		cin >> newPW;
-		anAdmin->changeThePassword(anAdmin->getID(), newPW, adminList);
+		anAdmin->changeThePassword(ID, newPW, adminList);
+		break;
+	}
+	}
+	delete(anAdmin);
+}
+
+int userOption()
+{
+	int choice = 0;
+	cout << "Hello, what do you want to do?" << endl;
+	cout << "1. Send Deletion Request" << endl;
+	cout << "2. Change Password" << endl;
+	cout << "3. Exit" << endl;
+	cout << "Your choice: ";
+	cin >> choice;
+	return choice;
+}
+
+void userAction(int choice, string ID, vector<User>& userList)
+{
+	User *anUser = new User;
+	switch (choice)
+	{
+	case 1:
+	{
+		anUser->sendDeletionRequest(ID, userList);
+		break;
+	}
+	case 2:
+	{
+		string newPW;
+		cout << "what is your new password: ";
+		cin >> newPW;
+		anUser->changeThePassword(newPW, ID, userList);
 		break;
 	}
 	}

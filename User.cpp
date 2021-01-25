@@ -10,6 +10,7 @@
 #include "Account.h"
 #include "User.h"
 #include "Admin.h"
+#include "tool.h"
 
 using namespace std;
 
@@ -17,9 +18,13 @@ User::User() {
 	// TODO Auto-generated constructor stub
 }
 
-void User::sendDeletionRequest()
+void User::sendDeletionRequest(string ID, vector<User> userList)
 {
-	cout << "send deletion request" << endl;
+	setPending(ID, userList);
 }
 
+void User::changeThePassword(string newPW, string ID, vector<User> userList)
+{
+	changePassword(ID, newPW, userList);
+}
 

@@ -8,10 +8,13 @@
 #ifndef USER_H_
 #define USER_H_
 
+#include<vector>
+
 class User : public Account {
 public:
 	User();
-	void sendDeletionRequest();
+	void sendDeletionRequest(string, vector<User>);
+	void changeThePassword(string, string, vector<User>);
 };
 
 #endif /* USER_H_ */

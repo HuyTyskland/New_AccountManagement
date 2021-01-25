@@ -47,11 +47,6 @@ bool Account::getRole()
 	return isUser;
 }
 
-void Account::changePassword(string newPW)
-{
-	cout << "change the password to " << newPW << endl;
-}
-
 string Account::printElement()
 {
 	string s = "";
