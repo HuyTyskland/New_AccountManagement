@@ -33,14 +33,14 @@ FileHandler::FileHandler(string whichRegion) {
 			userList[sizeUser++].setInfo(returnInfoPieces(line)[0].getID(),
 					returnInfoPieces(line)[0].getPW(),
 					returnInfoPieces(line)[0].getRole(),
-					returnInfoPieces(line)[0].getStatus());
+					returnInfoPieces(line)[0].getActiveness());
 		} else
 		{
 			adminList.push_back(Admin());
 			adminList[sizeAdmin++].setInfo(returnInfoPieces(line)[0].getID(),
 					returnInfoPieces(line)[0].getPW(),
 					returnInfoPieces(line)[0].getRole(),
-					returnInfoPieces(line)[0].getStatus());
+					returnInfoPieces(line)[0].getActiveness());
 		}
 	}
 	myfile.close();
@@ -72,7 +72,7 @@ vector<User> FileHandler::returnUserList()
 void FileHandler::insertNewAccount(string newID, string newPW)
 {
 	userList.push_back(User());
-	userList[userList.size()].setInfo(newID, newPW, true, 1);
+	userList[userList.size()].setInfo(newID, newPW, true, true);
 }
 
 void FileHandler::updateVector(vector<Admin> newAdminList, vector<User> newUserList)

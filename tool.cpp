@@ -67,7 +67,7 @@ void printUserList(vector<User> userList)
 void printDeletionRequest(vector<User> userList)
 {
 	for (auto it = userList.begin(); it != userList.end(); ++it)
-		if ((*it).getStatus() == false)
+		if ((*it).getActiveness() == false)
 			cout << (*it).printElement() << endl;
 }
 

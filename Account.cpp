@@ -23,7 +23,7 @@ void Account::setInfo(string Identification, string Password, bool role, bool aS
 {
 	ID = Identification;
 	PW = Password;
-	theStatus = aStatus;
+	isActive = aStatus;
 	isUser = role;
 }
 
@@ -37,9 +37,9 @@ string Account::getPW()
 	return PW;
 }
 
-bool Account::getStatus()
+bool Account::getActiveness()
 {
-	return theStatus;
+	return isActive;
 }
 
 bool Account::getRole()

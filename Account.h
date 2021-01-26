@@ -16,14 +16,14 @@ public:
 	void setInfo(string, string, bool, bool);
 	string getID();
 	string getPW();
-	bool getStatus();
+	bool getActiveness();
 	bool getRole();
 	string printElement();
 protected:
 	string ID;
 	string PW;
 	bool isUser;
-	bool theStatus;
+	bool isActive;
 
 };
 
