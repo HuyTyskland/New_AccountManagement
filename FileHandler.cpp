@@ -27,7 +27,6 @@ FileHandler::FileHandler() {
 	myfile.open("Hanoi.txt");
 	int sizeUser = 0;
 	int sizeAdmin = 0;
-	cout << "FileHandler.cpp - second" << endl;
 	while(getline(myfile, line))
 	{
 		if(returnInfoPieces(line)[0].getRole() == true)
@@ -50,6 +49,7 @@ FileHandler::FileHandler() {
 	myfile.close();
 	remove("Hanoi.txt");
 	rename("temp.txt","Hanoi.txt");
+	createNewFile();
 }
 
 FileHandler::~FileHandler()
@@ -58,9 +58,16 @@ FileHandler::~FileHandler()
 //	myfile.open(regionData + ".txt");
 	myfile.open("Hanoi.txt");
 	for (auto it = userList.begin(); it != userList.end(); ++it)
-		myfile << (*it).printElement();
+	{
+		myfile << (*it).getID() << "-" << (*it).getPW() << "-" << (*it).getRole() << "-" << (*it).getActiveness();
+		myfile << "\n";
+	}
 	for (auto it = adminList.begin(); it != adminList.end(); ++it)
-		myfile << (*it).printElement();
+	{
+//		myfile << (*it).getID() << "-" << (*it).getPW() << "-" << (*it).getRole() << "-" << (*it).getActiveness();
+		myfile << (*it).getID() << "-" << (*it).getPW();
+		myfile << "\n";
+	}
 	myfile.close();
 }
 

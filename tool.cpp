@@ -6,6 +6,7 @@
  */
 
 #include<iostream>
+#include<fstream>
 #include<string>
 #include<regex>
 #include<vector>
@@ -28,9 +29,9 @@ vector<Account> returnInfoPieces(string line)
 			position[index++] = i;
 
 	string Iden = line.substr(0,  position[0]);
-	string Pas = line.substr(position[0]+1, position[1]);
-	bool isUser = (line.substr(position[1]+1, position[2]) == "1") ? true : false;
-	bool aStatus = (line.substr(position[2]+1, line.length()) == "1") ? true : false;
+	string Pas = line.substr(position[0]+1, position[1] - position[0] - 1);
+	bool isUser = (line.substr(position[1]+1, position[2] - position[1] - 1) == "1") ? true : false;
+	bool aStatus = (line.substr(position[2]+1, line.length() - position[2] - 1) == "1") ? true : false;
 	anAccount[0].setInfo(Iden, Pas, isUser, aStatus);
 	return anAccount;
 }
@@ -97,4 +98,11 @@ void setPending(string ID, vector<User> userList)
 	for (auto it = userList.begin(); it != userList.end(); ++it)
 		if ((*it).getID() ==  ID)
 			(*it).setInfo(ID, (*it).getPW(), true, false);
+}
+
+void createNewFile()
+{
+	fstream myfile;
+	myfile.open("temp.txt", ios::out);
+	myfile.close();
 }

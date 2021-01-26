@@ -39,25 +39,30 @@ vector<User> AccountManager::returnUser()
 
 bool AccountManager::isAdminFound(string ID, string PW)
 {
-	cout << "AccountManager.cpp - first" << endl;
-	for(auto it = returnAdmin().begin(); it != returnAdmin().end(); ++it)
-	{
-		cout << "AccountManager.cpp - third" << endl;
-		if ((ID == (*it).getID()) && PW == (*it).getPW())
-		{
-			cout << "AccountManager.cpp - second";
-			return true;
-		} else return false;
-	}
+	vector<Admin> adminList = returnAdmin();
+//	for(auto it = adminList.begin(); it != adminList.end(); ++it)
+//	{
+//		if ((ID == (*it).getID()) && PW == (*it).getPW())
+//		{
+//			return true;
+//		} else return false;
+//	}
+	for(auto it = adminList.begin(); it != adminList.end(); ++it)
+		cout << (*it).getID() << " " << (*it).getPW() << endl;
 	return false;
 }
 
 bool AccountManager::isUserFound(string ID, string PW)
 {
-	for(auto it = returnUser().begin(); it != returnUser().end(); ++it)
-		if ((ID == (*it).getID()) && (PW == (*it).getPW()) && ((*it).getActiveness()))
-			return true;
-		else return false;
+	vector<User> userList = returnUser();
+//	for(auto it = userList.begin(); it != userList.end(); ++it)
+//		if ((ID == (*it).getID()) && (PW == (*it).getPW()) && ((*it).getActiveness()))
+//		{
+//			return true;
+//		}
+//		else return false;
+	for(auto it = userList.begin(); it != userList.end(); ++it)
+		cout << (*it).getID() << " " << (*it).getPW() << endl;
 	return false;
 }
 
@@ -68,7 +73,6 @@ vector<string> AccountManager::getAccountInfo()
 	cout << "ID: ";
 	cin >> ID;
 	accountInfo.push_back(ID);
-	cout << endl;
 	cout << "PW: ";
 	cin >> PW;
 	accountInfo.push_back(PW);

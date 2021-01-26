@@ -75,6 +75,7 @@ void regionAction()
 			adminAction(adminOption(), anAccount[0], userList, adminList);
 		} else if(ptrAccMana->isUserFound(anAccount[0], anAccount[1]))
 		{
+			cout << "main.cpp - fourth" << endl;
 			userAction(userOption(), anAccount[0], userList);
 		}
 		ptrAccMana->updateList(adminList, userList);
