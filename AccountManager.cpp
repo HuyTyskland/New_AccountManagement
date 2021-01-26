@@ -77,3 +77,8 @@ void AccountManager::registerNewAccount(string newID, string newPW)
 		cout << "The account is created successfully" << endl;
 	} else cout << "Your ID is not unique or your password is not valid" << endl;
 }
+
+void AccountManager::updateList(vector<Admin> newAdminList, vector<User> newUserList)
+{
+	fileHandler->updateVector(newAdminList, newUserList);
+}
