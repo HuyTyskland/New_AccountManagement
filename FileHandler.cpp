@@ -17,14 +17,17 @@
 
 using namespace std;
 
-FileHandler::FileHandler(string whichRegion) {
+//FileHandler::FileHandler(string whichRegion) {
+FileHandler::FileHandler() {
 	// TODO Auto-generated constructor stub
-	regionData = whichRegion;
+//	regionData = whichRegion;
 	string line;
 	fstream myfile;
-	myfile.open(regionData + ".txt");
+//	myfile.open(regionData + ".txt");
+	myfile.open("Hanoi.txt");
 	int sizeUser = 0;
 	int sizeAdmin = 0;
+	cout << "FileHandler.cpp - second" << endl;
 	while(getline(myfile, line))
 	{
 		if(returnInfoPieces(line)[0].getRole() == true)
@@ -43,15 +46,17 @@ FileHandler::FileHandler(string whichRegion) {
 					returnInfoPieces(line)[0].getActiveness());
 		}
 	}
+	cout << "FileHandler.cpp - first" << endl;
 	myfile.close();
-	remove("data.txt");
-	rename("temp.txt","data.txt");
+	remove("Hanoi.txt");
+	rename("temp.txt","Hanoi.txt");
 }
 
 FileHandler::~FileHandler()
 {
 	fstream myfile;
-	myfile.open(regionData + ".txt");
+//	myfile.open(regionData + ".txt");
+	myfile.open("Hanoi.txt");
 	for (auto it = userList.begin(); it != userList.end(); ++it)
 		myfile << (*it).printElement();
 	for (auto it = adminList.begin(); it != adminList.end(); ++it)

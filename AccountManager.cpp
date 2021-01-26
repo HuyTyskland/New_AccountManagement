@@ -16,8 +16,9 @@
 
 using namespace std;
 
-AccountManager::AccountManager(string region) {
-	whichRegion = region;
+//AccountManager::AccountManager(string region) {
+AccountManager::AccountManager() {
+//	whichRegion = region;
 	// TODO Auto-generated constructor stub
 }
 
@@ -38,17 +39,23 @@ vector<User> AccountManager::returnUser()
 
 bool AccountManager::isAdminFound(string ID, string PW)
 {
+	cout << "AccountManager.cpp - first" << endl;
 	for(auto it = returnAdmin().begin(); it != returnAdmin().end(); ++it)
+	{
+		cout << "AccountManager.cpp - third" << endl;
 		if ((ID == (*it).getID()) && PW == (*it).getPW())
+		{
+			cout << "AccountManager.cpp - second";
 			return true;
-		else return false;
+		} else return false;
+	}
 	return false;
 }
 
 bool AccountManager::isUserFound(string ID, string PW)
 {
 	for(auto it = returnUser().begin(); it != returnUser().end(); ++it)
-		if ((ID == (*it).getID()) && (PW == (*it).getPW()) && ((*it).getStatus()))
+		if ((ID == (*it).getID()) && (PW == (*it).getPW()) && ((*it).getActiveness()))
 			return true;
 		else return false;
 	return false;
@@ -66,7 +73,6 @@ vector<string> AccountManager::getAccountInfo()
 	cin >> PW;
 	accountInfo.push_back(PW);
 	return accountInfo;
-
 }
 
 void AccountManager::registerNewAccount(string newID, string newPW)

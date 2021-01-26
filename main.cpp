@@ -17,7 +17,8 @@
 using namespace std;
 
 string regionList();
-void regionAction(string);
+//void regionAction(string);
+void regionAction();
 void logMenu();
 int adminOption();
 void adminAction(int, string, vector<User>&, vector<Admin>&);
@@ -26,7 +27,10 @@ void userAction(int, string, vector<User>&);
 
 int main()
 {
+//	regionAction(regionList());
+	regionAction();
 
+	return 0;
 }
 
 string regionList()
@@ -39,18 +43,23 @@ string regionList()
 	cout << endl;
 	cout << endl;
 	cout << "Which region you want to work with?" << endl;
-	cout << "1. Ha Noi" << endl;
-	cout << "2. Ho Chi Minh city" << endl;
-	cout << "3. Da Nang city" << endl;
+	cout << "1. Ha Noi - Hanoi" << endl;
+	cout << "2. Ho Chi Minh city - Hochiminh" << endl;
+	cout << "3. Da Nang city - Danang" << endl;
 	cout << "Your choice: ";
 	cin >> region;
 	return region;
 }
 
-void regionAction(string region)
+//void regionAction(string region)
+void regionAction()
 {
 	int choice = 0;
-	AccountManager *ptrAccMana = new AccountManager(region);
+//	AccountManager *ptrAccMana = new AccountManager(region);
+	AccountManager *ptrAccMana = new AccountManager;
+	cout << "main.cpp - first" << endl;
+	vector<Admin> adminList = ptrAccMana->returnAdmin();
+	vector<User> userList = ptrAccMana->returnUser();
 	logMenu();
 	cin >> choice;
 	switch(choice)
@@ -59,16 +68,16 @@ void regionAction(string region)
 	{
 		cout << "Insert your account:" << endl;
 		vector<string> anAccount = ptrAccMana->getAccountInfo();
+		cout << "main.cpp-third" << endl;
 		if (ptrAccMana->isAdminFound(anAccount[0], anAccount[1]))
 		{
-			adminAction(adminOption(),
-					anAccount[0],
-					ptrAccMana->returnUser(),
-					ptrAccMana->returnAdmin());
+			cout << "main.cpp - second" << endl;
+			adminAction(adminOption(), anAccount[0], userList, adminList);
 		} else if(ptrAccMana->isUserFound(anAccount[0], anAccount[1]))
 		{
-			cout << "User menu" << endl;
+			userAction(userOption(), anAccount[0], userList);
 		}
+		ptrAccMana->updateList(adminList, userList);
 		break;
 	}
 	case 2:
@@ -80,7 +89,7 @@ void regionAction(string region)
 		break;
 	}
 	}
-
+	delete(ptrAccMana);
 }
 
 void logMenu()
@@ -176,4 +185,5 @@ void userAction(int choice, string ID, vector<User>& userList)
 		break;
 	}
 	}
+	delete(anUser);
 }
