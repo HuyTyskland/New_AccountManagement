@@ -48,7 +48,7 @@ bool AccountManager::isAdminFound(string ID, string PW)
 bool AccountManager::isUserFound(string ID, string PW)
 {
 	for(auto it = returnUser().begin(); it != returnUser().end(); ++it)
-		if ((ID == (*it).getID()) && PW == (*it).getPW())
+		if ((ID == (*it).getID()) && (PW == (*it).getPW()) && ((*it).getStatus()))
 			return true;
 		else return false;
 	return false;
