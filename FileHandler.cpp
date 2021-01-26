@@ -74,3 +74,9 @@ void FileHandler::insertNewAccount(string newID, string newPW)
 	userList.push_back(User());
 	userList[userList.size()].setInfo(newID, newPW, true, 1);
 }
+
+void FileHandler::updateVector(vector<Admin> newAdminList, vector<User> newUserList)
+{
+	adminList = newAdminList;
+	userList = newUserList;
+}

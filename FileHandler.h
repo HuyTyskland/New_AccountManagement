@@ -18,6 +18,7 @@ public:
 	vector<Admin> returnAdminList();
 	vector<User> returnUserList();
 	void insertNewAccount(string, string);
+	void updateVector(vector<Admin>, vector<User>);
 private:
 	vector<Admin> adminList;
 	vector<User> userList;
