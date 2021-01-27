@@ -13,8 +13,8 @@
 class User : public Account {
 public:
 	User();
-	void sendDeletionRequest(string, vector<User>);
-	void changeThePassword(string, string, vector<User>);
+	void sendDeletionRequest(string, vector<User>&);
+	void changeThePassword(string, string, vector<User>&);
 };
 
 #endif /* USER_H_ */

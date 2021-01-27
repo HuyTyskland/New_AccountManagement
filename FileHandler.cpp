@@ -17,18 +17,24 @@
 
 using namespace std;
 
-//FileHandler::FileHandler(string whichRegion) {
-FileHandler::FileHandler() {
+FileHandler::FileHandler(int whichRegion) {
 	// TODO Auto-generated constructor stub
-//	regionData = whichRegion;
-	string line;
+	cout << whichRegion << "line 22" << endl;
+	regionData = whichRegion;
+	cout << regionData << "line 24" << endl;
 	fstream myfile;
-//	myfile.open(regionData + ".txt");
-	myfile.open("Hanoi.txt");
+	if(regionData == 1)
+		//myfile.open("Hanoi.txt");
+		cout << "Hanoi" << endl;
+	else if(regionData == 2)
+		myfile.open("Hochiminh.txt");
+	else myfile.open("Danang.txt");
+	string line;
 	int sizeUser = 0;
 	int sizeAdmin = 0;
 	while(getline(myfile, line))
 	{
+		cout << line << endl;
 		if(returnInfoPieces(line)[0].getRole() == true)
 		{
 			userList.push_back(User());
@@ -45,10 +51,8 @@ FileHandler::FileHandler() {
 					returnInfoPieces(line)[0].getActiveness());
 		}
 	}
-	cout << "FileHandler.cpp - first" << endl;
 	myfile.close();
-	remove("Hanoi.txt");
-	rename("temp.txt","Hanoi.txt");
+	changeFile(whichRegion);
 	createNewFile();
 }
 
@@ -56,7 +60,11 @@ FileHandler::~FileHandler()
 {
 	fstream myfile;
 //	myfile.open(regionData + ".txt");
-	myfile.open("Hanoi.txt");
+	if(regionData == 1)
+		myfile.open("Hanoi.txt");
+	else if(regionData == 2)
+		myfile.open("Hochiminh.txt");
+	else myfile.open("Danang.txt");
 	for (auto it = userList.begin(); it != userList.end(); ++it)
 	{
 		myfile << (*it).getID() << "-" << (*it).getPW() << "-" << (*it).getRole() << "-" << (*it).getActiveness();
@@ -64,7 +72,6 @@ FileHandler::~FileHandler()
 	}
 	for (auto it = adminList.begin(); it != adminList.end(); ++it)
 	{
-//		myfile << (*it).getID() << "-" << (*it).getPW() << "-" << (*it).getRole() << "-" << (*it).getActiveness();
 		myfile << (*it).getID() << "-" << (*it).getPW() << "-" << (*it).getRole() << "-" << (*it).getActiveness();
 		myfile << "\n";
 	}
@@ -84,7 +91,7 @@ vector<User> FileHandler::returnUserList()
 void FileHandler::insertNewAccount(string newID, string newPW)
 {
 	userList.push_back(User());
-	userList[userList.size()].setInfo(newID, newPW, true, true);
+	userList[userList.size()-1].setInfo(newID, newPW, true, true);
 }
 
 void FileHandler::updateVector(vector<Admin> newAdminList, vector<User> newUserList)

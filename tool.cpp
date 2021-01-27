@@ -76,9 +76,7 @@ void deleteAnAccount(string ID, vector<User>& userList)
 {
 	for(auto it = userList.begin(); it != userList.end(); ++it)
 		if(ID == (*it).getID())
-		{
 			userList.erase(it);
-		}
 }
 
 void changePassword(string ID, string newPW, vector<Admin>& adminList)
@@ -99,18 +97,14 @@ void setPending(string ID, vector<User>& userList)
 {
 	for (auto it = userList.begin(); it != userList.end(); ++it)
 		if ((*it).getID() ==  ID)
-		{
 			(*it).setInfo(ID, (*it).getPW(), true, false);
-		}
 }
 
 void setActive(string ID, vector<User>& userList)
 {
 	for (auto it = userList.begin(); it != userList.end(); ++it)
 		if ((*it).getID() ==  ID)
-		{
 			(*it).setInfo(ID, (*it).getPW(), true, true);
-		}
 }
 
 void createNewFile()
@@ -118,4 +112,29 @@ void createNewFile()
 	fstream myfile;
 	myfile.open("temp.txt", ios::out);
 	myfile.close();
+}
+
+void changeFile(int region)
+{
+	switch(region)
+	{
+	case 1:
+	{
+		remove("Hanoi.txt");
+		rename("temp.txt", "Hanoi.txt");
+		break;
+	}
+	case 2:
+	{
+		remove("Hochiminh.txt");
+		rename("temp.txt", "Hochiminh.txt");
+		break;
+	}
+	case 3:
+	{
+		remove("Danang.txt");
+		rename("temp.txt", "Danang.txt");
+		break;
+	}
+	}
 }

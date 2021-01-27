@@ -23,6 +23,7 @@ void changePassword(string, string, vector<User>&);
 void setPending(string, vector<User>&);
 void setActive(string, vector<User>&);
 void createNewFile();
+void changeFile(int);
 
 
 #endif /* TOOL_H_ */

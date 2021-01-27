@@ -10,8 +10,7 @@
 
 class AccountManager {
 public:
-//	AccountManager(string);
-	AccountManager();
+	AccountManager(int);
 	virtual ~AccountManager();
 	vector<Admin> returnAdmin();
 	vector<User> returnUser();
@@ -21,9 +20,8 @@ public:
 	void registerNewAccount(string ID, string PW);
 	void updateList(vector<Admin>, vector<User>);
 private:
-//	FileHandler *fileHandler = new FileHandler(whichRegion);
-	FileHandler *fileHandler = new FileHandler;
-//	string whichRegion;
+	FileHandler *fileHandler = new FileHandler(whichRegion);
+	int whichRegion;
 };
 
 #endif /* ACCOUNTMANAGER_H_ */

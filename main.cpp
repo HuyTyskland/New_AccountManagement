@@ -16,9 +16,8 @@
 
 using namespace std;
 
-string regionList();
-//void regionAction(string);
-void regionAction();
+void regionAction(int);
+int regionList();
 void logMenu();
 int adminOption();
 void adminAction(int, string, vector<User>&, vector<Admin>&);
@@ -27,15 +26,14 @@ void userAction(int, string, vector<User>&);
 
 int main()
 {
-//	regionAction(regionList());
-	regionAction();
-
+	regionAction(regionList());
+	cout << "program finished" << endl;
 	return 0;
 }
 
-string regionList()
+int regionList()
 {
-	string region;
+	int region;
 	cout << "***************************************" << endl;
 	cout << "        WELCOME TO THE SYSTEM" << endl;
 	cout << "<><><><><><><><><><><><><><><><><><><><>" << endl;
@@ -51,13 +49,10 @@ string regionList()
 	return region;
 }
 
-//void regionAction(string region)
-void regionAction()
+void regionAction(int region)
 {
 	int choice = 0;
-//	AccountManager *ptrAccMana = new AccountManager(region);
-	AccountManager *ptrAccMana = new AccountManager;
-	cout << "main.cpp - first" << endl;
+	AccountManager *ptrAccMana = new AccountManager(region);
 	vector<Admin> adminList = ptrAccMana->returnAdmin();
 	vector<User> userList = ptrAccMana->returnUser();
 	logMenu();
@@ -70,11 +65,13 @@ void regionAction()
 		vector<string> anAccount = ptrAccMana->getAccountInfo();
 		if (ptrAccMana->isAdminFound(anAccount[0], anAccount[1]))
 		{
+			cout << "main.cpp - inside admin log in" << endl;
 			adminAction(adminOption(), anAccount[0], userList, adminList);
 		} else if(ptrAccMana->isUserFound(anAccount[0], anAccount[1]))
 		{
+			cout << "main.cpp - inside user log in" << endl;
 			userAction(userOption(), anAccount[0], userList);
-		}
+		} else cout << "Your inserted info is not found" << endl;
 		ptrAccMana->updateList(adminList, userList);
 		break;
 	}
@@ -110,6 +107,7 @@ int adminOption()
 	cout << "4. Disapprove Deletion Request" << endl;
 	cout << "5. Change Password" << endl;
 	cout << "6. Exit" << endl;
+	cout << "Your choice: ";
 	cin >> choice;
 	return choice;
 }
@@ -132,6 +130,8 @@ void adminAction(int choice, string ID, vector<User> &userList, vector<Admin> &a
 	case 3:
 	{
 		string deletedID;
+		cout << "Deletion Request List:" << endl;
+		anAdmin->showAllDeletionRequest(userList);
 		cout << "Which deletion do you want to approve, please enter that ID: ";
 		cin >> deletedID;
 		anAdmin->approveAnRequest(deletedID, userList);
@@ -139,7 +139,12 @@ void adminAction(int choice, string ID, vector<User> &userList, vector<Admin> &a
 	}
 	case 4:
 	{
-		cout << "Disapprove the request" << endl;
+		string disapprovedID;
+		cout << "Deletion Request List:" << endl;
+		anAdmin->showAllDeletionRequest(userList);
+		cout << "Which deletion you want to disapprove, please enter that ID: ";
+		cin >> disapprovedID;
+		anAdmin->disapproveAnRequest(disapprovedID, userList);
 		break;
 	}
 	case 5:
@@ -148,6 +153,7 @@ void adminAction(int choice, string ID, vector<User> &userList, vector<Admin> &a
 		cout << "what is your new password: ";
 		cin >> newPW;
 		anAdmin->changeThePassword(ID, newPW, adminList);
+		cout << "Your password has been changed successfully" << endl;
 		break;
 	}
 	default:
@@ -176,6 +182,7 @@ void userAction(int choice, string ID, vector<User>& userList)
 	case 1:
 	{
 		anUser->sendDeletionRequest(ID, userList);
+		cout << "Your deletion request has been sent" << endl;
 		break;
 	}
 	case 2:
@@ -184,6 +191,7 @@ void userAction(int choice, string ID, vector<User>& userList)
 		cout << "what is your new password: ";
 		cin >> newPW;
 		anUser->changeThePassword(newPW, ID, userList);
+		cout << "Your password has been changed successfully" << endl;
 		break;
 	}
 	default:

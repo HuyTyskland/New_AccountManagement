@@ -29,14 +29,17 @@ void Admin::showAllDeletionRequest(vector<User> userList)
 	printDeletionRequest(userList);
 }
 
-void Admin::approveAnRequest(string deletedID, vector<User> userList)
+void Admin::approveAnRequest(string deletedID, vector<User>& userList)
 {
 	deleteAnAccount(deletedID, userList);
 }
 
-void Admin::changeThePassword(string ID, string newPW, vector<Admin> adminList)
+void Admin::changeThePassword(string ID, string newPW, vector<Admin>& adminList)
 {
 	changePassword(ID, newPW, adminList);
 }
 
-
+void Admin::disapproveAnRequest(string disapprovedID, vector<User>& userList)
+{
+	setActive(disapprovedID, userList);
+}

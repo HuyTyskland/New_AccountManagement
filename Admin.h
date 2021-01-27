@@ -15,8 +15,9 @@ public:
 	Admin();
 	void showAllAccount(vector<User>);
 	void showAllDeletionRequest(vector<User>);
-	void approveAnRequest(string, vector<User>);
-	void changeThePassword(string, string, vector<Admin>);
+	void approveAnRequest(string, vector<User>&);
+	void changeThePassword(string, string, vector<Admin>&);
+	void disapproveAnRequest(string, vector<User>&);
 };
 
 #endif /* ADMIN_H_ */
