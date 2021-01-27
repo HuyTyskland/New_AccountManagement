@@ -18,6 +18,7 @@ using namespace std;
 
 AccountManager::AccountManager(int region) {
 	whichRegion = region;
+	fileHandler = new FileHandler(whichRegion);
 	// TODO Auto-generated constructor stub
 }
 
@@ -38,11 +39,7 @@ vector<User> AccountManager::returnUser()
 
 bool AccountManager::isAdminFound(string ID, string PW)
 {
-	cout << "AccountManager.cpp - line 41 - first" << endl;
 	vector<Admin> adminList = returnAdmin();
-	cout << "AccountManager.cpp - line 41 - second" << endl;
-	for(auto it = adminList.begin(); it != adminList.end(); ++it)
-		cout << (*it).getID() << " " << (*it).getPW()<< endl;
 	for(auto it = adminList.begin(); it != adminList.end(); ++it)
 	{
 		if ((ID == (*it).getID()) && (PW == (*it).getPW()) && ((*it).getRole() == false))
@@ -55,11 +52,7 @@ bool AccountManager::isAdminFound(string ID, string PW)
 
 bool AccountManager::isUserFound(string ID, string PW)
 {
-	cout << "AccountManager.cpp - line 57 - first" << endl;
 	vector<User> userList = returnUser();
-	cout << "AccountManager.cpp - line 57 - second" << endl;
-	for(auto it = userList.begin(); it != userList.end(); ++it)
-			cout << (*it).getID() << " " << (*it).getPW()<< endl;
 	for(auto it = userList.begin(); it != userList.end(); ++it)
 		if ((ID == (*it).getID()) && (PW == (*it).getPW()) && ((*it).getActiveness()) && ((*it).getRole() == true))
 		{

@@ -26,8 +26,17 @@ void userAction(int, string, vector<User>&);
 
 int main()
 {
-	regionAction(regionList());
-	cout << "program finished" << endl;
+	char choice;
+	bool isContinue = true;
+	do {
+		regionAction(regionList());
+		cout << "Do you want to continue using the system?" << endl;
+		cout << "Y/y - yes || N/n - no: ";
+		cin >> choice;
+		isContinue = (choice == 'Y' || choice == 'y') ? true : false;
+	}while(isContinue);
+	cout << "Program finished" << endl;
+	cout << "Goodbye and see you again" << endl;
 	return 0;
 }
 
@@ -65,12 +74,14 @@ void regionAction(int region)
 		vector<string> anAccount = ptrAccMana->getAccountInfo();
 		if (ptrAccMana->isAdminFound(anAccount[0], anAccount[1]))
 		{
-			cout << "main.cpp - inside admin log in" << endl;
-			adminAction(adminOption(), anAccount[0], userList, adminList);
+			do{
+				adminAction(adminOption(), anAccount[0], userList, adminList);
+			} while (adminOption() != 6);
 		} else if(ptrAccMana->isUserFound(anAccount[0], anAccount[1]))
 		{
-			cout << "main.cpp - inside user log in" << endl;
-			userAction(userOption(), anAccount[0], userList);
+			do {
+				userAction(userOption(), anAccount[0], userList);
+			} while (userOption() != 3);
 		} else cout << "Your inserted info is not found" << endl;
 		ptrAccMana->updateList(adminList, userList);
 		break;

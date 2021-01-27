@@ -20,7 +20,7 @@ public:
 	void registerNewAccount(string ID, string PW);
 	void updateList(vector<Admin>, vector<User>);
 private:
-	FileHandler *fileHandler = new FileHandler(whichRegion);
+	FileHandler *fileHandler;
 	int whichRegion;
 };
 

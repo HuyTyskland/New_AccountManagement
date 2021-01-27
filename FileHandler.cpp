@@ -19,13 +19,12 @@ using namespace std;
 
 FileHandler::FileHandler(int whichRegion) {
 	// TODO Auto-generated constructor stub
-	cout << whichRegion << "line 22" << endl;
 	regionData = whichRegion;
-	cout << regionData << "line 24" << endl;
 	fstream myfile;
 	if(regionData == 1)
-		//myfile.open("Hanoi.txt");
-		cout << "Hanoi" << endl;
+	{
+		myfile.open("Hanoi.txt");
+	}
 	else if(regionData == 2)
 		myfile.open("Hochiminh.txt");
 	else myfile.open("Danang.txt");
@@ -34,7 +33,6 @@ FileHandler::FileHandler(int whichRegion) {
 	int sizeAdmin = 0;
 	while(getline(myfile, line))
 	{
-		cout << line << endl;
 		if(returnInfoPieces(line)[0].getRole() == true)
 		{
 			userList.push_back(User());
