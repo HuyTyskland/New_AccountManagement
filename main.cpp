@@ -68,14 +68,11 @@ void regionAction()
 	{
 		cout << "Insert your account:" << endl;
 		vector<string> anAccount = ptrAccMana->getAccountInfo();
-		cout << "main.cpp-third" << endl;
 		if (ptrAccMana->isAdminFound(anAccount[0], anAccount[1]))
 		{
-			cout << "main.cpp - second" << endl;
 			adminAction(adminOption(), anAccount[0], userList, adminList);
 		} else if(ptrAccMana->isUserFound(anAccount[0], anAccount[1]))
 		{
-			cout << "main.cpp - fourth" << endl;
 			userAction(userOption(), anAccount[0], userList);
 		}
 		ptrAccMana->updateList(adminList, userList);
@@ -89,6 +86,8 @@ void regionAction()
 		cout << "Thank you for registering" << endl;
 		break;
 	}
+	default:
+		break;
 	}
 	delete(ptrAccMana);
 }
@@ -151,6 +150,8 @@ void adminAction(int choice, string ID, vector<User> &userList, vector<Admin> &a
 		anAdmin->changeThePassword(ID, newPW, adminList);
 		break;
 	}
+	default:
+		break;
 	}
 	delete(anAdmin);
 }
@@ -185,6 +186,8 @@ void userAction(int choice, string ID, vector<User>& userList)
 		anUser->changeThePassword(newPW, ID, userList);
 		break;
 	}
+	default:
+		break;
 	}
 	delete(anUser);
 }

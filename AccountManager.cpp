@@ -40,29 +40,28 @@ vector<User> AccountManager::returnUser()
 bool AccountManager::isAdminFound(string ID, string PW)
 {
 	vector<Admin> adminList = returnAdmin();
-//	for(auto it = adminList.begin(); it != adminList.end(); ++it)
-//	{
-//		if ((ID == (*it).getID()) && PW == (*it).getPW())
-//		{
-//			return true;
-//		} else return false;
-//	}
 	for(auto it = adminList.begin(); it != adminList.end(); ++it)
-		cout << (*it).getID() << " " << (*it).getPW() << endl;
+	{
+		if ((ID == (*it).getID()) && (PW == (*it).getPW()) && ((*it).getRole() == false))
+		{
+			return true;
+		}
+	}
+//	for(auto it = adminList.begin(); it != adminList.end(); ++it)
+//		cout << (*it).getID() << " " << (*it).getPW() << endl;
 	return false;
 }
 
 bool AccountManager::isUserFound(string ID, string PW)
 {
 	vector<User> userList = returnUser();
-//	for(auto it = userList.begin(); it != userList.end(); ++it)
-//		if ((ID == (*it).getID()) && (PW == (*it).getPW()) && ((*it).getActiveness()))
-//		{
-//			return true;
-//		}
-//		else return false;
 	for(auto it = userList.begin(); it != userList.end(); ++it)
-		cout << (*it).getID() << " " << (*it).getPW() << endl;
+		if ((ID == (*it).getID()) && (PW == (*it).getPW()) && ((*it).getActiveness()) && ((*it).getRole() == true))
+		{
+			return true;
+		}
+//	for(auto it = userList.begin(); it != userList.end(); ++it)
+//		cout << (*it).getID() << " " << (*it).getPW() << endl;
 	return false;
 }
 

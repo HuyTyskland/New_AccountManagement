@@ -65,7 +65,7 @@ FileHandler::~FileHandler()
 	for (auto it = adminList.begin(); it != adminList.end(); ++it)
 	{
 //		myfile << (*it).getID() << "-" << (*it).getPW() << "-" << (*it).getRole() << "-" << (*it).getActiveness();
-		myfile << (*it).getID() << "-" << (*it).getPW();
+		myfile << (*it).getID() << "-" << (*it).getPW() << "-" << (*it).getRole() << "-" << (*it).getActiveness();
 		myfile << "\n";
 	}
 	myfile.close();
