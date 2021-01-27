@@ -72,32 +72,45 @@ void printDeletionRequest(vector<User> userList)
 			cout << (*it).printElement() << endl;
 }
 
-void deleteAnAccount(string ID, vector<User> userList)
+void deleteAnAccount(string ID, vector<User>& userList)
 {
 	for(auto it = userList.begin(); it != userList.end(); ++it)
 		if(ID == (*it).getID())
+		{
 			userList.erase(it);
+		}
 }
 
-void changePassword(string ID, string newPW, vector<Admin> adminList)
+void changePassword(string ID, string newPW, vector<Admin>& adminList)
 {
 	for (auto it = adminList.begin(); it != adminList.end(); ++it)
 		if ((*it).getID() == ID)
 			(*it).setInfo(ID, newPW, false, true);
 }
 
-void changePassword(string ID, string newPW, vector<User> userList)
+void changePassword(string ID, string newPW, vector<User>& userList)
 {
 	for (auto it = userList.begin(); it != userList.end(); ++it)
 		if ((*it).getID() == ID)
 			(*it).setInfo(ID, newPW, true, true);
 }
 
-void setPending(string ID, vector<User> userList)
+void setPending(string ID, vector<User>& userList)
 {
 	for (auto it = userList.begin(); it != userList.end(); ++it)
 		if ((*it).getID() ==  ID)
+		{
 			(*it).setInfo(ID, (*it).getPW(), true, false);
+		}
+}
+
+void setActive(string ID, vector<User>& userList)
+{
+	for (auto it = userList.begin(); it != userList.end(); ++it)
+		if ((*it).getID() ==  ID)
+		{
+			(*it).setInfo(ID, (*it).getPW(), true, true);
+		}
 }
 
 void createNewFile()
