@@ -74,14 +74,10 @@ void regionAction(int region)
 		vector<string> anAccount = ptrAccMana->getAccountInfo();
 		if (ptrAccMana->isAdminFound(anAccount[0], anAccount[1]))
 		{
-			do{
-				adminAction(adminOption(), anAccount[0], userList, adminList);
-			} while (adminOption() != 6);
+			adminAction(adminOption(), anAccount[0], userList, adminList);
 		} else if(ptrAccMana->isUserFound(anAccount[0], anAccount[1]))
 		{
-			do {
-				userAction(userOption(), anAccount[0], userList);
-			} while (userOption() != 3);
+			userAction(userOption(), anAccount[0], userList);
 		} else cout << "Your inserted info is not found" << endl;
 		ptrAccMana->updateList(adminList, userList);
 		break;
