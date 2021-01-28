@@ -13,6 +13,7 @@
 #include "Admin.h"
 #include "FileHandler.h"
 #include "AccountManager.h"
+#include "tool.h"
 
 using namespace std;
 
@@ -20,9 +21,9 @@ void regionAction(int);
 int regionList();
 void logMenu();
 int adminOption();
-void adminAction(int, string, vector<User>&, vector<Admin>&);
+void adminAction(int, string, vector<User>&, vector<Admin>&, int&);
 int userOption();
-void userAction(int, string, vector<User>&);
+void userAction(int, string, vector<User>&, int&);
 
 int main()
 {
@@ -64,6 +65,7 @@ void regionAction(int region)
 	AccountManager *ptrAccMana = new AccountManager(region);
 	vector<Admin> adminList = ptrAccMana->returnAdmin();
 	vector<User> userList = ptrAccMana->returnUser();
+	int count = checkDeletionNum(userList);
 	logMenu();
 	cin >> choice;
 	switch(choice)
@@ -74,14 +76,20 @@ void regionAction(int region)
 		vector<string> anAccount = ptrAccMana->getAccountInfo();
 		if (ptrAccMana->isAdminFound(anAccount[0], anAccount[1]))
 		{
+			int adminOpt = 0;
 			do{
-				adminAction(adminOption(), anAccount[0], userList, adminList);
-			} while (adminOption() != 6);
+				adminOpt = adminOption();
+				adminAction(adminOpt, anAccount[0], userList, adminList, count);
+				cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << endl;
+			} while (adminOpt != 6);
 		} else if(ptrAccMana->isUserFound(anAccount[0], anAccount[1]))
 		{
+			int userOpt = 0;
 			do {
-				userAction(userOption(), anAccount[0], userList);
-			} while (userOption() != 3);
+				userOpt = userOption();
+				userAction(userOpt, anAccount[0], userList, count);
+				cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << endl;
+			} while (userOpt != 3);
 		} else cout << "Your inserted info is not found" << endl;
 		ptrAccMana->updateList(adminList, userList);
 		break;
@@ -123,7 +131,7 @@ int adminOption()
 	return choice;
 }
 
-void adminAction(int choice, string ID, vector<User> &userList, vector<Admin> &adminList)
+void adminAction(int choice, string ID, vector<User> &userList, vector<Admin> &adminList, int& count)
 {
 	Admin *anAdmin = new Admin;
 	switch(choice)
@@ -135,27 +143,39 @@ void adminAction(int choice, string ID, vector<User> &userList, vector<Admin> &a
 	}
 	case 2:
 	{
-		anAdmin->showAllDeletionRequest(userList);
+		if (count == 0)
+			cout << "There is no deletion request recently" << endl;
+		else anAdmin->showAllDeletionRequest(userList);
 		break;
 	}
 	case 3:
 	{
-		string deletedID;
-		cout << "Deletion Request List:" << endl;
-		anAdmin->showAllDeletionRequest(userList);
-		cout << "Which deletion do you want to approve, please enter that ID: ";
-		cin >> deletedID;
-		anAdmin->approveAnRequest(deletedID, userList);
+		if (count != 0)
+		{
+			string deletedID;
+			cout << "Deletion Request List:" << endl;
+			anAdmin->showAllDeletionRequest(userList);
+			cout << "Which deletion do you want to approve, please enter that ID: ";
+			cin >> deletedID;
+			anAdmin->approveAnRequest(deletedID, userList);
+			cout << "The account has beed deleted" << endl;
+			count--;
+		} else cout << "There is no deletion request to approve" << endl;
 		break;
 	}
 	case 4:
 	{
-		string disapprovedID;
-		cout << "Deletion Request List:" << endl;
-		anAdmin->showAllDeletionRequest(userList);
-		cout << "Which deletion you want to disapprove, please enter that ID: ";
-		cin >> disapprovedID;
-		anAdmin->disapproveAnRequest(disapprovedID, userList);
+		if (count != 0)
+		{
+			string disapprovedID;
+			cout << "Deletion Request List:" << endl;
+			anAdmin->showAllDeletionRequest(userList);
+			cout << "Which deletion you want to disapprove, please enter that ID: ";
+			cin >> disapprovedID;
+			anAdmin->disapproveAnRequest(disapprovedID, userList);
+			cout << "The account has been back to active" << endl;
+			count--;
+		} else cout << "There is no deletion request to disapprove" << endl;
 		break;
 	}
 	case 5:
@@ -185,7 +205,7 @@ int userOption()
 	return choice;
 }
 
-void userAction(int choice, string ID, vector<User>& userList)
+void userAction(int choice, string ID, vector<User>& userList, int& count)
 {
 	User *anUser = new User;
 	switch (choice)
@@ -194,6 +214,7 @@ void userAction(int choice, string ID, vector<User>& userList)
 	{
 		anUser->sendDeletionRequest(ID, userList);
 		cout << "Your deletion request has been sent" << endl;
+		count++;
 		break;
 	}
 	case 2:
