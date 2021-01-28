@@ -70,6 +70,7 @@ void printDeletionRequest(vector<User> userList)
 	for (auto it = userList.begin(); it != userList.end(); ++it)
 		if ((*it).getActiveness() == false)
 			cout << (*it).printElement() << endl;
+
 }
 
 void deleteAnAccount(string ID, vector<User>& userList)
@@ -137,4 +138,13 @@ void changeFile(int region)
 		break;
 	}
 	}
+}
+
+int checkDeletionNum(vector<User> userList)
+{
+	int count = 0;
+	for (auto it = userList.begin(); it != userList.end(); ++it)
+		if ((*it).getActiveness() == false)
+			count++;
+	return count;
 }

@@ -24,6 +24,7 @@ void setPending(string, vector<User>&);
 void setActive(string, vector<User>&);
 void createNewFile();
 void changeFile(int);
+int checkDeletionNum(vector<User>);
 
 
 #endif /* TOOL_H_ */
